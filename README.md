@@ -10,6 +10,7 @@ Outputs the list of the children window informations for the given window identi
 
 # Format
 Each line holds the following informations:
+
     WID  FLAGS  CLASS/INSTANCE  TITLE
 
 # Flags
