@@ -8,7 +8,6 @@ LDFLAGS = -L$(PREFIX)/lib
 
 PREFIX    ?= /usr/local
 BINPREFIX = $(PREFIX)/bin
-MANPREFIX = $(PREFIX)/share/man
 
 SRC = xlsw.c helpers.c
 OBJ = $(SRC:.c=.o)
