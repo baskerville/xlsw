@@ -15,10 +15,14 @@ int main(int argc, char *argv[])
     recursive = false;
     char opt;
 
-    while ((opt = getopt(argc, argv, "hr")) != -1) {
+    while ((opt = getopt(argc, argv, "hvr")) != -1) {
         switch (opt) {
             case 'h':
-                printf("xlsw [-h|-r] [WID ...]\n");
+                printf("xlsw [-h|-v|-r] [WID ...]\n");
+                return EXIT_SUCCESS;
+                break;
+            case 'v':
+                printf("%s\n", VERSION);
                 return EXIT_SUCCESS;
                 break;
             case 'r':

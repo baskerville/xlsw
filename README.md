@@ -2,10 +2,11 @@
 Outputs the list of the children window informations for the given window identifiers (use the root window if none are given).
 
 # Synopsis
-    xlsw [-h|-r] [WID ...]
+    xlsw [-h|-v|-r] [WID ...]
 
 # Options
 - `-h` — Print the synopsis to standard output and exit.
+- `-v` — Print the version to standard output and exit.
 - `-r` — Recurse into subwindows.
 
 # Format
