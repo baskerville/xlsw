@@ -10,40 +10,30 @@ PREFIX    ?= /usr/local
 BINPREFIX = $(PREFIX)/bin
 
 SRC = xlsw.c helpers.c
+HDR = $(SRC:.c=.h)
 OBJ = $(SRC:.c=.o)
 
 all: CFLAGS += -Os
 all: LDFLAGS += -s
-all: options xlsw
+all: xlsw
 
-options:
-	@echo "xlsw build options:"
-	@echo "CC      = $(CC)"
-	@echo "CFLAGS  = $(CFLAGS)"
-	@echo "LDFLAGS = $(LDFLAGS)"
-	@echo "LIBS    = $(LIBS)"
-	@echo "PREFIX  = $(PREFIX)"
+$(OBJ): $(SRC) $(HDR) Makefile
 
 .c.o:
-	@echo "CC $<"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 xlsw: $(OBJ)
-	@echo CC -o $@
-	@$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
-
-clean:
-	@echo "cleaning"
-	@rm -f $(OBJ) xlsw
+	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
 
 install:
-	@echo "installing executable files to $(DESTDIR)$(BINPREFIX)"
-	@mkdir -p "$(DESTDIR)$(BINPREFIX)"
-	@cp xlsw "$(DESTDIR)$(BINPREFIX)"
-	@chmod 755 "$(DESTDIR)$(BINPREFIX)/xlsw"
+	mkdir -p "$(DESTDIR)$(BINPREFIX)"
+	cp xlsw "$(DESTDIR)$(BINPREFIX)"
+	chmod 755 "$(DESTDIR)$(BINPREFIX)/xlsw"
 
 uninstall:
-	@echo "removing executable files from $(DESTDIR)$(BINPREFIX)"
-	@rm -f $(DESTDIR)$(BINPREFIX)/xlsw
+	rm -f $(DESTDIR)$(BINPREFIX)/xlsw
 
-.PHONY: all options clean install uninstall
+clean:
+	rm -f $(OBJ) xlsw
+
+.PHONY: all clean install uninstall
