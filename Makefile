@@ -27,8 +27,7 @@ xlsw: $(OBJ)
 
 install:
 	mkdir -p "$(DESTDIR)$(BINPREFIX)"
-	cp xlsw "$(DESTDIR)$(BINPREFIX)"
-	chmod 755 "$(DESTDIR)$(BINPREFIX)/xlsw"
+	cp -p xlsw "$(DESTDIR)$(BINPREFIX)"
 
 uninstall:
 	rm -f $(DESTDIR)$(BINPREFIX)/xlsw
