@@ -1,0 +1,2 @@
+helpers.o: helpers.c helpers.h
+xlsw.o: xlsw.c helpers.h xlsw.h
