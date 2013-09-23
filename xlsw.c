@@ -114,7 +114,7 @@ void print_info(xcb_window_t win, int depth)
         window_class = war->_class;
         free(war);
     }
-    printf("%*s0x%07X  %c%c%c  %-11s  %s\n", depth, "", win, (override_redirect ? 'o' : '-'), (map_state == XCB_MAP_STATE_VIEWABLE ? '-' : 'u'), (window_class == XCB_WINDOW_CLASS_INPUT_OUTPUT ? '-' : 'i'), class_instance, title);
+    printf("%*s0x%07X  %c%c%c  %-11s  %s\n", depth, "", win, (map_state == XCB_MAP_STATE_VIEWABLE ? '-' : 'u'), (window_class == XCB_WINDOW_CLASS_INPUT_OUTPUT ? '-' : 'i'), (override_redirect ? 'o' : '-'), class_instance, title);
 }
 
 bool get_window_title(xcb_window_t win, char *title, size_t len) {
