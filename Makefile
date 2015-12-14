@@ -1,39 +1,33 @@
-VERSION = 0.1
+OUT = xlsw
+VERSION = $(shell git describe)
 
-CC      ?= gcc
-LIBS     = -lm -lxcb -lxcb-icccm -lxcb-ewmh
-CFLAGS  += -std=c99 -pedantic -Wall -Wextra -I$(PREFIX)/include
-CFLAGS  += -D_POSIX_C_SOURCE=200112L -DVERSION=\"$(VERSION)\"
-LDFLAGS += -L$(PREFIX)/lib
+CPPFLAGS += -D_POSIX_C_SOURCE=200112L -DVERSION=\"$(VERSION)\"
+CFLAGS   += -std=c99 -pedantic -Wall -Wextra
+LDLIBS    = -lxcb -lxcb-icccm -lxcb-ewmh
 
 PREFIX    ?= /usr/local
-BINPREFIX  = $(PREFIX)/bin
+BINPREFIX ?= $(PREFIX)/bin
 
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
-all: CFLAGS += -Os
-all: LDFLAGS += -s
-all: xlsw
+all: $(OUT)
+
+debug: CFLAGS += -O0 -g
+debug: $(OUT)
 
 include Sourcedeps
 
 $(OBJ): Makefile
 
-.c.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-xlsw: $(OBJ)
-	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(LIBS)
-
 install:
 	mkdir -p "$(DESTDIR)$(BINPREFIX)"
-	cp -p xlsw "$(DESTDIR)$(BINPREFIX)"
+	cp -p $(OUT) "$(DESTDIR)$(BINPREFIX)"
 
 uninstall:
-	rm -f $(DESTDIR)$(BINPREFIX)/xlsw
+	rm -f "$(DESTDIR)$(BINPREFIX)"/$(OUT)
 
 clean:
-	rm -f $(OBJ) xlsw
+	rm -f $(OUT) $(OBJ)
 
-.PHONY: all clean install uninstall
+.PHONY: all debug install uninstall clean
