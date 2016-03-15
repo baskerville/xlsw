@@ -1,15 +1,16 @@
 OUT = xlsw
-VERSION = $(shell git describe || cat VERSION)
+VERCMD  ?= git describe 2> /dev/null
+VERSION := $(shell $(VERCMD) || cat VERSION)
 
 CPPFLAGS += -D_POSIX_C_SOURCE=200112L -DVERSION=\"$(VERSION)\"
 CFLAGS   += -std=c99 -pedantic -Wall -Wextra
-LDLIBS    = -lxcb -lxcb-icccm -lxcb-ewmh
+LDLIBS   := -lxcb -lxcb-icccm -lxcb-ewmh
 
 PREFIX    ?= /usr/local
 BINPREFIX ?= $(PREFIX)/bin
 
-SRC = $(wildcard *.c)
-OBJ = $(SRC:.c=.o)
+SRC := $(wildcard *.c)
+OBJ := $(SRC:.c=.o)
 
 all: $(OUT)
 
