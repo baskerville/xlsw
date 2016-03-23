@@ -21,10 +21,10 @@ Each line holds the following informations:
 
 # Example Output
 
-    0x0400335  ---  URxvt/urxvt  terminal ~/bin
-      0x040033A  ---  NA           NA
-        0x060013F  -io  NA           NA
-    0x0600004  u--  NA           NA
-    0x1200001  u--  NA           xcompmgr
-    0x0E00005  ---  dzen/dzen2   dzen title
-    0x0C00001  ui-  NA           NA
+    0x00400335  ---  URxvt/urxvt  terminal ~/bin
+      0x0040033A  ---  NA           NA
+        0x0060013F  -io  NA           NA
+    0x00600004  u--  NA           NA
+    0x01200001  u--  NA           xcompmgr
+    0x00E00005  ---  dzen/dzen2   dzen title
+    0x00C00001  ui-  NA           NA
