@@ -74,7 +74,7 @@ void list_subwindows(xcb_window_t parent, int depth)
 {
     xcb_query_tree_reply_t *qtr = xcb_query_tree_reply(dpy, xcb_query_tree(dpy, parent), NULL);
     if (qtr == NULL) {
-        warn("Failed to get the window subtree for 0x%X\n", parent);
+        warn("Failed to get the window subtree for 0x%08X\n", parent);
         return;
     }
     int len = xcb_query_tree_children_length(qtr);
@@ -114,7 +114,7 @@ void print_info(xcb_window_t win, int depth)
         window_class = war->_class;
         free(war);
     }
-    printf("%*s0x%07X  %c%c%c  %-11s  %s\n", depth, "", win, (map_state == XCB_MAP_STATE_VIEWABLE ? '-' : 'u'), (window_class == XCB_WINDOW_CLASS_INPUT_OUTPUT ? '-' : 'i'), (override_redirect ? 'o' : '-'), class_instance, title);
+    printf("%*s0x%08X  %c%c%c  %-11s  %s\n", depth, "", win, (map_state == XCB_MAP_STATE_VIEWABLE ? '-' : 'u'), (window_class == XCB_WINDOW_CLASS_INPUT_OUTPUT ? '-' : 'i'), (override_redirect ? 'o' : '-'), class_instance, title);
 }
 
 bool get_window_title(xcb_window_t win, char *title, size_t len) {
