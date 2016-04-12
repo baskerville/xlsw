@@ -13,7 +13,7 @@
 int main(int argc, char *argv[])
 {
     recursive = false;
-    char opt;
+    int opt;
 
     while ((opt = getopt(argc, argv, "hvr")) != -1) {
         switch (opt) {
