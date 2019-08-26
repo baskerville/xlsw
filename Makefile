@@ -1,5 +1,5 @@
 OUT = xlsw
-VERCMD  ?= git describe 2> /dev/null
+VERCMD  ?= git describe --tags 2> /dev/null
 VERSION := $(shell $(VERCMD) || cat VERSION)
 
 CPPFLAGS += -D_POSIX_C_SOURCE=200112L -DVERSION=\"$(VERSION)\"
